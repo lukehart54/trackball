@@ -62,18 +62,18 @@ export class Vector3 {
   }
 
   normalize() {
-    let temp = this;
-    let num = this.magnitude;
+    let temp = new Vector3();
+    let num = this.magnitude();
     temp.set(0, this.coordinates[0] / num);
-    temp.set(0, this.coordinates[1] / num);
-    temp.set(0, this.coordinates[2] / num);
+    temp.set(1, this.coordinates[1] / num);
+    temp.set(2, this.coordinates[2] / num);
     return temp;
   }
 
-  magnitude(vec) {
+  magnitude() {
     return Math.sqrt(
-      Math.pow(this.coordinates[0], 2),
-      Math.pow(this.coordinates[1], 2),
+      Math.pow(this.coordinates[0], 2) +
+      Math.pow(this.coordinates[1], 2) +
       Math.pow(this.coordinates[2], 2)
     );
   }

@@ -549,33 +549,35 @@ export class Matrix4 {
     return m;
   }
 
-  rotateAroundAxis(axis, degrees){
-    let radians = degrees * (Math.PI / 180);
-    let s = sin(radians);
-    let c = cos(radians);
+  static rotateAroundAxis(axis, radians) {
+    //request animation frame
+    let rotate = new Matrix4();
+    console.log(axis)
+    // let radians = degrees * (Math.PI / 180);
+    let s = Math.sin(radians);
+    let c = Math.cos(radians);
     let d = 1 - c;
     // set 1's
-    rotate.set(0, 0, d * axis.x * axis.x + c);
-    rotate.set(1, 1, d * axis.y * axis.y + c);
-    rotate.set(2, 2, d * axis.z * axis.z + c);
+    rotate.set(0, 0, d * axis.get(0) * axis.get(0) + c);
+    rotate.set(1, 1, d * axis.get(1) * axis.get(1) + c);
+    rotate.set(2, 2, d * axis.get(2) * axis.get(2) + c);
     rotate.set(3, 3, 1);
 
     // set 0's
-    rotate.set(0, 1, d * axis.x * axis.y + (s * axis.z));
-    rotate.set(0, 2, d * axis.x * axis.z + (s * axis.y));
+    rotate.set(0, 1, d * axis.get(0) * axis.get(1) - s * axis.get(2));
+    rotate.set(0, 2, d * axis.get(0) * axis.get(2) + s * axis.get(1));
     rotate.set(0, 3, 0);
-    rotate.set(1, 0, 0);
-    rotate.set(1, 2, 0);
+    rotate.set(1, 0, d * axis.get(1) * axis.get(0) + s * axis.get(2));
+    rotate.set(1, 2, d * axis.get(1) * axis.get(2) - s * axis.get(0));
     rotate.set(1, 3, 0);
-    rotate.set(2, 0, 0);
-    rotate.set(2, 1, 0);
+    rotate.set(2, 0, d * axis.get(2) * axis.get(0) - s * axis.get(1));
+    rotate.set(2, 1, d * axis.get(2) * axis.get(1) + s * axis.get(0));
     rotate.set(2, 3, 0);
     rotate.set(3, 0, 0);
     rotate.set(3, 1, 0);
     rotate.set(3, 2, 0);
     return rotate;
   }
-
 }
 
 /**
