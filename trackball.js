@@ -23,7 +23,7 @@ export class Trackball {
   }
 
   setViewport(width, height) {
-    dimensions = new Vector3(width, height, 0);
+    dimensions = new Vector3(width, height, 0);;
   }
 
   start(mousePixels) {
@@ -36,9 +36,10 @@ export class Trackball {
     if (Math.abs(dot) < 1) {
       let radians = Math.acos(dot);
       let axis = mouseSphere0.cross(mouseSphere).normalize();
-      console.log(axis);
       currMatrix = Matrix4.rotateAroundAxis(axis, radians);
-      matrix = currMatrix * prevMatrix;
+      console.log(matrix);
+      matrix = currMatrix.multiplyMatrix(prevMatrix);
+      console.log(matrix);
     }
   }
 

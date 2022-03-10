@@ -128,6 +128,7 @@ void main() {
       let mouseX = event.clientX;
       let mousePixs = new Vector3(mouseX, mouseY, 0);
       trackball.drag(mousePixs);
+      render();
     }
   }
 

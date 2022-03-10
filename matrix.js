@@ -552,7 +552,6 @@ export class Matrix4 {
   static rotateAroundAxis(axis, radians) {
     //request animation frame
     let rotate = new Matrix4();
-    console.log(axis)
     // let radians = degrees * (Math.PI / 180);
     let s = Math.sin(radians);
     let c = Math.cos(radians);
